@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <base target="_top">
+    <title>Panel de Control Inyección</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .maquina-card { border: 1px solid #ccc; padding: 10px; margin: 10px 0; border-radius: 8px; }
+        .status-on { color: green; }
+        .status-off { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Monitoreo de Planta</h1>
+    
+    <div id="servicios">
+        <div class="maquina-card">
+            <h3>Battenfeld Unilog B2</h3>
+            <p>Estado: <span class="status-on">Activo (Señal Digital)</span></p>
+        </div>
+        <div class="maquina-card">
+            <h3>Haitian (Legacy)</h3>
+            <p>Estado: <span class="status-off">Paro (I/O Digital 0)</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Aquí conectarías con tu repositorio de GitHub o tu API de señales
+        console.log("Cargando avances del proyecto...");
+    </script>
+</body>
+</html>
