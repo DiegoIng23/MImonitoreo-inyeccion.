@@ -1,5 +1,5 @@
 // URL de tu implementación en Google Apps Script (la obtendrás después)
-const URL_GOOGLE_SCRIPT = "TU_URL_AQUI";
+const URL_GOOGLE_SCRIPT = "https://script.google.com/macros/s/AKfycbzY0WAHZ_E510p4P9LJ2GwBHEcFfg9-stJMyHPM1Ho-JlO99DQbAt5FbzMvAKkaq7I/exec";
 
 // Función para enviar comandos o notas desde el tablero
 async function enviarDato(maquina, mensaje) {
