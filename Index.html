@@ -3,40 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Control Inyección</title>
+    <title>Panel de Control Inyección - Monitoreo Industrial</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f4; }
-        .maquina-card { 
-            border: 1px solid #ccc; 
-            padding: 15px; 
-            margin: 15px 0; 
-            border-radius: 8px; 
-            background: white;
-            border-left: 8px solid #ccc;
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            padding: 20px; 
+            background-color: #f0f2f5; 
+            color: #333;
         }
-        .status-on { border-left-color: green; color: green; }
-        .status-off { border-left-color: red; color: red; }
-        input { width: 100%; padding: 8px; margin-top: 10px; border-radius: 4px; border: 1px solid #ddd; }
+        h1 { color: #1a73e8; text-align: center; }
+        .container { max-width: 800px; margin: auto; }
+        
+        /* Estilos de las tarjetas de máquinas */
+        .maquina-card { 
+            border: 1px solid #ddd; 
+            padding: 20px; 
+            margin: 15px 0; 
+            border-radius: 12px; 
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 10px solid #ccc; /* Color por defecto */
+        }
+        
+        /* Clases de estado visual */
+        .status-on { border-left-color: #28a745; } /* Verde para Activo */
+        .status-off { border-left-color: #dc3545; } /* Rojo para Paro/Alarma */
+        
+        .badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .badge-success { background: #e6ffed; color: #28a745; }
+        .badge-danger { background: #ffeef0; color: #dc3545; }
+
+        /* Optimización de inputs para teclado móvil */
+        input { 
+            width: 100%; 
+            padding: 12px; 
+            margin-top: 15px; 
+            border-radius: 8px; 
+            border: 1px solid #ced4da; 
+            box-sizing: border-box;
+            font-size: 16px; /* Evita zoom automático en iPhone/Android */
+        }
     </style>
 </head>
 <body>
-    <h1>Monitoreo de Planta</h1>
-    
-    <div id="servicios">
-        <div class="maquina-card status-on">
-            <h3>Battenfeld Unilog B2</h3>
-            <p>Estado: <strong>Activo (Señal Digital)</strong></p>
-            <input type="text" enterkeyhint="send" placeholder="Enviar comando a Battenfeld...">
-        </div>
 
-        <div class="maquina-card status-off">
-            <h3>Haitian (Legacy)</h3>
-            <p>Estado: <strong>Paro (I/O Digital 0)</strong></p>
-            <input type="text" enterkeyhint="send" placeholder="Enviar reporte de falla...">
+    <div class="container">
+        <h1>Monitoreo de Planta</h1>
+        <p style="text-align: center; color: #666;">Control de Inyección Multi-Marca</p>
+        
+        <div id="panel-maquinas">
+            <div class="maquina-card status-on">
+                <h3>Battenfeld Unilog B2</h3>
+                <p>Estado: <span class="badge badge-success">En Ciclo (I/O Digital)</span></p>
+                <small>Señales activas: Motor, Calefacción, Ciclo.</small>
+                <input type="text" enterkeyhint="send" placeholder="Enviar comando o nota a Battenfeld...">
+            </div>
+
+            <div class="maquina-card status-off">
+                <h3>Haitian (Viejita/Legacy)</h3>
+                <p>Estado: <span class="badge badge-danger">Paro / Alarma</span></p>
+                <small>Señal física: Entrada 0 (Sin pulso de ciclo).</small>
+                <input type="text" enterkeyhint="send" placeholder="Reportar motivo de paro en Haitian...">
+            </div>
         </div>
     </div>
 
     <script src="Codigo.js"></script>
 </body>
 </html>
+
