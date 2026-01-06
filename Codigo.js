@@ -1,17 +1,39 @@
-Editor
-Código.gs
-Index.html
-.
+// URL de tu implementación en Google Apps Script (la obtendrás después)
+const URL_GOOGLE_SCRIPT = "TU_URL_AQUI";
 
-40414243444546474849
-/**
- *  * Proyecto: Monitoreo de Inyección (Multi-marca)
-  * Archivo: Código.gs
-   */
+// Función para enviar comandos o notas desde el tablero
+async function enviarDato(maquina, mensaje) {
+    if (!mensaje) return;
 
-   // 1. Esta función "dibuja" la interfaz en tu navegador (Oppo/Fold/Tab)
-   function doGet() {
-     return HtmlService.createHtmlOutputFromFile('Index')
-         .setTitle('Control de Inyección - Diego Prieto')
-             .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
+    console.log(`Enviando reporte de ${maquina}...`);
+    
+    const datos = {
+        fecha: new Date().toLocaleString(),
+        maquina: maquina,
+        mensaje: mensaje
+    };
 
+    try {
+        // Enviar a Google Workspace para registro histórico
+        const respuesta = await fetch(URL_GOOGLE_SCRIPT, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify(datos)
+        });
+        
+        alert(`Reporte de ${maquina} enviado correctamente.`);
+    } catch (error) {
+        console.error("Error al sincronizar con Google:", error);
+    }
+}
+
+// Escuchar cuando se presiona la tecla "Enviar" en el teclado del móvil
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            const maquinaNombre = this.parentElement.querySelector('h3').innerText;
+            enviarDato(maquinaNombre, this.value);
+            this.value = ''; // Limpiar el cuadro tras enviar
+        }
+    });
+});
