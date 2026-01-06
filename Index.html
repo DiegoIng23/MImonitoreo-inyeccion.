@@ -2,33 +2,41 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Control Inyección</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: sans-serif; padding: 20px; }
-        .maquina-card { border: 1px solid #ccc; padding: 10px; margin: 10px 0; border-radius: 8px; }
-        .status-on { color: green; }
-        .status-off { color: red; }
+        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f4; }
+        .maquina-card { 
+            border: 1px solid #ccc; 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 8px; 
+            background: white;
+            border-left: 8px solid #ccc;
+        }
+        .status-on { border-left-color: green; color: green; }
+        .status-off { border-left-color: red; color: red; }
+        input { width: 100%; padding: 8px; margin-top: 10px; border-radius: 4px; border: 1px solid #ddd; }
     </style>
 </head>
 <body>
     <h1>Monitoreo de Planta</h1>
     
     <div id="servicios">
-        <div class="maquina-card">
+        <div class="maquina-card status-on">
             <h3>Battenfeld Unilog B2</h3>
-            <p>Estado: <span class="status-on">Activo (Señal Digital)</span></p>
+            <p>Estado: <strong>Activo (Señal Digital)</strong></p>
+            <input type="text" enterkeyhint="send" placeholder="Enviar comando a Battenfeld...">
         </div>
-        <div class="maquina-card">
+
+        <div class="maquina-card status-off">
             <h3>Haitian (Legacy)</h3>
-            <p>Estado: <span class="status-off">Paro (I/O Digital 0)</span></p>
+            <p>Estado: <strong>Paro (I/O Digital 0)</strong></p>
+            <input type="text" enterkeyhint="send" placeholder="Enviar reporte de falla...">
         </div>
     </div>
 
-    <script>
-        // Aquí conectarías con tu repositorio de GitHub o tu API de señales
-        console.log("Cargando avances del proyecto...");
-    </script>
+    <script src="Codigo.js"></script>
 </body>
 </html>
